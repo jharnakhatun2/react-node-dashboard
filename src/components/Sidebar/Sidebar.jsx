@@ -1,10 +1,14 @@
 import React from "react"
 
+
+
 const Sidebar = () => {
+    
+  
   return (
-    <div>
-      <h1>Sidebar</h1>
-    </div>
+    <aside className="w-64 bg-white shadow-lg p-6">
+        
+      </aside>
   )
 };
 
