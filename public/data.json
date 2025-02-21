@@ -1,0 +1,45 @@
+[
+    {
+        "id" : 1 ,
+        "image" : "https://i.ibb.co.com/nsqFC242/1.webp",
+        "title" : "OLA Bamboo toothbrush",
+        "price" : "9.99",
+        "description" : "The OLA Bamboo toothbrush is made with Moso Bamboo, which is not consumed by Pandas. It grows naturally at a rate of up to 4 feet per day, without the addition of any chemical substances. Its handle is specially designed to give you the perfect grip. The nylon bristles are flexible enough to reach all corners of your mouth keeping your gums healthy. It is smooth, durable and better than plastic. OLA bamboo helps you in taking a step towards a clean & green future."
+    },
+    {
+        "id" : 2 ,
+        "image" : "https://i.ibb.co.com/MDsj7L4q/2.webp",
+        "title" : "Allure Bamboo Toothbrush ",
+        "price" : "7",
+        "description" : "Allure Bamboo Toothbrush with Toothbrush Stand (charcoal) s a combo offer that isvery soft and have an ergonomically rounded bottom. Organically cultivated, environmentally friendly, biodegradable, and antibacterial bamboo is used to make the handle. The bristles on this toothbrush are charcoal, which are perhaps the highest-quality and most reliable bristles on the market"
+    },
+    {
+        "id" : 3 ,
+        "image" : "https://i.ibb.co.com/Z6wRRs62/3.webp",
+        "title" : "Decorative Bamboo Toothbrush ",
+        "price" : "10",
+        "description" : "By making the switch to bamboo toothbrushes we can greatly decrease our ecological footprint over the course of our lives. Not only will you be preventing more plastic toothbrushes from going in the landfill or ending up in the ocean, you will be setting a better example for those around you. Unfortunately, finding eco-friendly toothbrushes that are made from natural resources can be difficult, as most stores only carry plastic toothbrushes. "
+    },
+    {
+        "id" : 4 ,
+        "image" : "https://i.ibb.co.com/5x8K2xmL/4.webp",
+        "title" : "Compostable Bamboo Travel Toothbrush",
+        "price" : "9",
+        "description" : "Bamboo Travel Toothbrush that's collapsible for easy storage and travel! This stylish Travel Toothbrush makes brushing on the go easier than ever before.The bristles are made out of castor bean oil, making the toothbrush completely compostable! This eco friendly toothbrush is the perfect replacement for wasteful plastic ones."
+    },
+    {
+        "id" : 5 ,
+        "image" : "https://i.ibb.co.com/wr4bmDC2/5.webp",
+        "title" : "Bamboo Toothbrushes for Adults",
+        "price" : "7",
+        "description" : "co-friendly toothbrush made from sustainably sourced bamboo wood, with soft bristles to prevent gum irritation, packaged in 100% recyclable cardboard, and covered by 30 days hassle-free return policy."
+    },
+    {
+        "id" : 6 ,
+        "image" : "https://i.ibb.co.com/d0DGz5F8/6.webp",
+        "title" : "Bamboo Toothbrush (Adult) Goldrick Natural Living",
+        "price" : "9.50",
+        "description" : "Make the change with our bamboo toothbrushes, these are an environment-friendly alternative to conventional plastic toothbrushes. They are made out of natural Moso bamboo, which is one of the fastest-growing plants in the world, making it a very sustainable material. Our environment-friendly bamboo brush will last you just as long as any mass-produced plastic toothbrush.Dental experts recommend using soft bristles and replacing your toothbrush every 3 months."
+    }
+]
+
