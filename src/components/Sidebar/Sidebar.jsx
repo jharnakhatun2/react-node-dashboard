@@ -9,7 +9,7 @@ const Sidebar = () => {
 
 
   return (
-    <aside className="w-64 bg-white shadow-lg p-6 hidden sm:flex flex-col items-center justify-between">
+    <aside className="text-marcellus w-64 bg-white shadow-lg p-6 hidden sm:flex flex-col items-center justify-between">
       <Image alt="HeroUI hero Image"
         src="https://i.ibb.co.com/wNSNYFtg/logo123.webp"
         className="w-24 lg:w-32" />

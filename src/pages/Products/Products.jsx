@@ -28,21 +28,24 @@ const Products = () => {
     return <p>Loading ...</p>
   }
   return (
-    <div className="gap-2 grid grid-cols-2 sm:grid-cols-3">
+    <div className="gap-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
       {products.map((product) => (
         /* eslint-disable no-console */
-        <div key={product.id} className="flex items-center">
-          <div>
+        <div key={product.id} className="flex items-center gap-3">
+          <div className="w-64">
+            
           <Image
               alt={product.title}
-              className="w-full object-cover h-[200px]"
+              className="w-full object-cover h-[200px] rounded"
               radius="lg"
               shadow="sm"
               src={product.image}
-              width="90%"
+              width="100%"
             />
-              <h3>{product.title}</h3>
-              <p>Price : ${product.price}</p>
+            
+              <h3 className="font-medium py-1">{product.title}</h3>
+              <p className="text-zinc-700">Price : $ <span className="font-bold text-black text-lg">{product.price}</span>
+                </p>
               </div>
               <div className="space-y-2  ">
               <FaRegEye className={`bg-green-300 hover:bg-green-200 ${buttonStyle}`}/>
@@ -57,19 +60,3 @@ const Products = () => {
 };
 
 export default Products;
-{/* <Card key={product.id} isPressable shadow="sm" onPress={() => console.log("item pressed")}>
-          <CardBody className="overflow-visible p-0">
-            <Image
-              alt={product.title}
-              className="w-full object-cover h-[200px]"
-              radius="lg"
-              shadow="sm"
-              src={product.image}
-              width="100%"
-            />
-          </CardBody>
-          <CardFooter className="text-small justify-between">
-            <b>{product.title}</b>
-            <p className="text-default-500">${product.price}</p>
-          </CardFooter>
-        </Card> */}

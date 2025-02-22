@@ -7,7 +7,7 @@ import { Outlet } from "react-router";
 
 const Dashboard = () => {
     return (
-        <div className="bg-gray-100 flex w-full h-screen">
+        <div className="bg-gray-100 flex w-full">
             {/* Sidebar */}
             <Sidebar />
             {/* Main Content */}
