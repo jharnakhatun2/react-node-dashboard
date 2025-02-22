@@ -4,6 +4,7 @@ import { Image } from "@heroui/image";
 import { FaRegEye } from "react-icons/fa6";
 import { FaPen } from "react-icons/fa";
 import { ImBin } from "react-icons/im";
+import { Pagination } from "@heroui/react";
 
 
 const Products = () => {
@@ -28,6 +29,7 @@ const Products = () => {
     return <p>Loading ...</p>
   }
   return (
+    <>
     <div className="gap-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
       {products.map((product) => (
         /* eslint-disable no-console */
@@ -56,6 +58,8 @@ const Products = () => {
         
       ))}
     </div>
+    <Pagination loop showControls color="success" initialPage={1} total={5} className="pt-24 mx-auto"/>
+    </>
   )
 };
 

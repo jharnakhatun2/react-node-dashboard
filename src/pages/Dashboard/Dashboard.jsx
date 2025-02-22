@@ -3,6 +3,7 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import { Outlet } from "react-router";
+import { Divider } from "@heroui/react";
 
 
 const Dashboard = () => {
@@ -11,7 +12,7 @@ const Dashboard = () => {
             {/* Sidebar */}
             <Sidebar />
             {/* Main Content */}
-            <main className="flex-1 p-8">
+            <main className="flex-1 px-8 pt-8">
                 {/* Header */}
                 <Header />
                 {/* Children */}
