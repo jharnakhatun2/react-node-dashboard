@@ -1,17 +1,13 @@
-import { Card, CardHeader, CardBody } from "@heroui/card";
-import { Image } from "@heroui/image";
-import { Input } from "@heroui/input";
-import { Spinner } from "@heroui/spinner";
 import React from "react"
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import { Outlet } from "react-router";
-// import { Button, Card, Flex, Input, Spinner } from 'heroui';
+
 
 const Dashboard = () => {
     return (
-        <div className="min-h-screen bg-gray-100 flex">
+        <div className="bg-gray-100 flex w-full h-screen">
             {/* Sidebar */}
             <Sidebar />
             {/* Main Content */}
