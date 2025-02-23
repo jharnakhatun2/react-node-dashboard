@@ -8,7 +8,7 @@ import { Divider } from "@heroui/react";
 
 const Dashboard = () => {
     return (
-        <div className="bg-gray-100 flex w-full">
+        <div className="bg-gray-100 flex w-full min-h-screen">
             {/* Sidebar */}
             <Sidebar />
             {/* Main Content */}
