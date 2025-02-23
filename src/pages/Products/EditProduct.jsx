@@ -1,6 +1,27 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
+import { useParams } from "react-router";
+import swal from 'sweetalert';
 
 const EditProduct = () => {
+  const [singleData, setSingleData] = useState([]);
+  const [loading, setLoading] = useState(true)
+  const {id} = useParams();
+ 
+ 
+  useEffect(()=>{
+    const fetchData = async() =>{
+      try{
+        const response = await fetch(`http://localhost:5000/product/${id}`);
+        const data = await response.json();
+        setSingleData(data);
+      }catch(error){
+        console.error(error)
+      }finally{
+        setLoading(false)
+      }
+    }
+    fetchData();
+  },[id])
 
   const handleUpdate = (e) =>{
     e.preventDefault();
@@ -10,11 +31,33 @@ const EditProduct = () => {
     const price = form.price.value ;
     const description = form.description.value ;
     const products = {image, title, price, description};
-    console.log(products)
+    fetch(`http://localhost:5000/product/${singleData._id}`,{
+      method : 'PUT',
+      headers : {
+        'Content-Type' : 'application/json',
+      },
+      body : JSON.stringify(products)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      if(data.modifiedCount > 0){
+        swal({
+          title: "Update Successful!",
+          text: "Navigate to the Products section",
+          icon: "success",
+          dangerMode: false,
+        })
+      }
+    
+    })
   }
 
-
   const inputStyle = "block w-full grow py-2 pr-3 pl-2 text-base text-gray-700 placeholder:text-gray-400 bg-gray-200 focus:outline-none sm:text-sm/6 border rounded border-gray-200 hover:shadow-sm transition delay-150 duration-300 ease-in-out"
+
+  if(loading){
+    return <p>Loading ...</p>
+  }
   return (
     <div className="py-8 w-full md:w-5/6 lg:w-3/4 xl:w-4/6 mx-auto">
       <div className="border-b border-gray-300 pb-3">
@@ -28,6 +71,7 @@ const EditProduct = () => {
             type="text"
             placeholder="Upload Image"
             name="image"
+            defaultValue={singleData.image}
             className={`${inputStyle}`}
           />
         </div>
@@ -37,6 +81,7 @@ const EditProduct = () => {
             type="text"
             placeholder="Type Title"
             name="title"
+            defaultValue={singleData.title}
             className={`${inputStyle}`}
           />
         </div>
@@ -46,6 +91,7 @@ const EditProduct = () => {
             type="text"
             placeholder="Type Price"
             name="price"
+            defaultValue={singleData.price}
             className={`${inputStyle}`}
           />
         </div>
@@ -55,7 +101,9 @@ const EditProduct = () => {
             type="text"
             placeholder="Type Description"
             name="description"
+            defaultValue={singleData.description}
             className={`${inputStyle}`}
+            rows={5}
           />
         </div>
         <div>

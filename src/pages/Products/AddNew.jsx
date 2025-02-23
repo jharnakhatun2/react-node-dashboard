@@ -1,7 +1,7 @@
 import React from "react"
+import swal from 'sweetalert';
 
 const AddNew = () => {
-
 
 const handleSubmit = (e) =>{
   e.preventDefault();
@@ -12,6 +12,26 @@ const handleSubmit = (e) =>{
   const description = form.description.value ;
   const products = {image, title, price, description};
   console.log(products)
+  fetch('http://localhost:5000/product',{
+    method : 'POST',
+    headers : {
+      'Content-Type' : 'application/json',
+    },
+    body : JSON.stringify(products)
+  })
+  .then(res => res.json())
+  .then(data => {
+    console.log(data)
+    if(data.insertedId){
+      swal({
+        title: "Done!",
+        text: "Product Added Successfully",
+        icon: "success",
+        dangerMode: false,
+      })
+      form.reset();
+    }
+  })
 }
 
   const inputStyle = "block w-full grow py-2 pr-3 pl-2 text-base text-gray-700 placeholder:text-gray-400 bg-gray-200 focus:outline-none sm:text-sm/6 border rounded border-gray-200 hover:shadow-sm transition delay-150 duration-300 ease-in-out"
@@ -59,7 +79,6 @@ const handleSubmit = (e) =>{
             placeholder="Type Description"
             name="description"
             className={`${inputStyle}`}
-            required
           />
         </div>
         <div>

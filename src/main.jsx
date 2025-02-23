@@ -16,7 +16,7 @@ createRoot(document.getElementById('root')).render(
       <Route path='products' element={<Products/>}/>
       <Route path='add-new' element={<AddNew/>}/>
       <Route path='products' element={<Products/>}/>
-      <Route path='edit' element={<EditProduct/>}/>
+      <Route path='update/:id' element={<EditProduct/>}/>
       
       </Route>
     </Routes>

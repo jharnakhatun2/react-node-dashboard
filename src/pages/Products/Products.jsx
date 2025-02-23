@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react"
-import { Card, CardBody, CardFooter } from "@heroui/card";
 import { Image } from "@heroui/image";
 import { FaRegEye } from "react-icons/fa6";
 import { FaPen } from "react-icons/fa";
@@ -16,7 +15,7 @@ const Products = () => {
 
   
   useEffect(() => {
-    fetch('/data.json')
+    fetch('http://localhost:5000/product')
       .then(res => res.json())
       .then(data => {
         console.log(data)
@@ -41,7 +40,7 @@ const Products = () => {
       <div className="gap-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {products.map((product) => (
           /* eslint-disable no-console */
-          <div key={product.id} className="flex items-center gap-3">
+          <div key={product._id} className="flex items-center gap-3">
             <div className="w-64">
 
               <Image
@@ -59,7 +58,8 @@ const Products = () => {
             </div>
             <div className="space-y-2  ">
               <FaRegEye className={`bg-green-300 hover:bg-green-200 ${buttonStyle}`} />
-              <FaPen className={`bg-gray-500 hover:bg-gray-300 ${buttonStyle}`} />
+              <Link to={`/dashboard/update/${product._id}`}><FaPen className={`bg-gray-500 hover:bg-gray-300 ${buttonStyle}`} /></Link>
+              
               <ImBin className={`bg-red-500 hover:bg-red-300 ${buttonStyle}`} />
             </div>
           </div>
