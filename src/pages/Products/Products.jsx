@@ -10,7 +10,7 @@ import { Link } from "react-router";
 
 
 const Products = () => {
-  const [products, setProducts] = useState([]);
+  const [productsData, setProductsData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   
@@ -19,10 +19,29 @@ const Products = () => {
       .then(res => res.json())
       .then(data => {
         console.log(data)
-        setProducts(data);
+        setProductsData(data);
         setLoading(false)
       })
   }, []);
+
+  const handleDelete = (id) => {
+    fetch(`http://localhost:5000/product/${id}`,{method: 'DELETE'})
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        if(data.deletedCount > 0){
+          swal({
+            title: "Deleted!",
+            text: "Product Deleted Successfully",
+            icon: "success",
+            dangerMode: false,
+          });
+          const allData = productsData.filter((product)=>product._id !== id) ;
+          console.log(allData)
+          setProductsData(allData);
+        }
+      })
+  }
 
   const buttonStyle = "w-6 h-6 p-1 rounded cursor-pointer transition delay-150 duration-300 ease-in-out";
 
@@ -38,7 +57,7 @@ const Products = () => {
         <p className="flex items-center gap-3 text-green-600"><Link to="/dashboard">Dashboard</Link> <IoMdArrowDropright /> <span className="text-gray-700">Products</span> </p>
       </div>
       <div className="gap-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-        {products.map((product) => (
+        {productsData?.map((product) => (
           /* eslint-disable no-console */
           <div key={product._id} className="flex items-center gap-3">
             <div className="w-64">
@@ -60,7 +79,7 @@ const Products = () => {
               <FaRegEye className={`bg-green-300 hover:bg-green-200 ${buttonStyle}`} />
               <Link to={`/dashboard/update/${product._id}`}><FaPen className={`bg-gray-500 hover:bg-gray-300 ${buttonStyle}`} /></Link>
               
-              <ImBin className={`bg-red-500 hover:bg-red-300 ${buttonStyle}`} />
+              <ImBin className={`bg-red-500 hover:bg-red-300 ${buttonStyle}`} onClick={()=>handleDelete(product._id)}/>
             </div>
           </div>
 
