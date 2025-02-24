@@ -6,9 +6,11 @@ import Products from './pages/Products/Products.jsx'
 import AddNew from './pages/Products/AddNew.jsx'
 import EditProduct from './pages/Products/EditProduct.jsx'
 import Login from './pages/Login/Login.jsx'
+import AuthProvider from './components/Context/AuthProvider.jsx'
 
 
 createRoot(document.getElementById('root')).render(
+  <AuthProvider>
   <BrowserRouter>
     <Routes>
     <Route path='/' element={<Login />}/>
@@ -21,4 +23,5 @@ createRoot(document.getElementById('root')).render(
       </Route>
     </Routes>
   </BrowserRouter>,
+  </AuthProvider>
 )

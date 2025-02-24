@@ -3,19 +3,23 @@ import { Image } from "@heroui/image";
 import { FaRegEye } from "react-icons/fa6";
 import { FaPen } from "react-icons/fa";
 import { ImBin } from "react-icons/im";
-import { Button, Pagination, useDisclosure } from "@heroui/react";
+import { Button } from "@heroui/react";
 import { FaGlobe } from "react-icons/fa";
 import { IoMdArrowDropright } from "react-icons/io";
 import { Link } from "react-router";
 import ProductModal from "./ProductModal";
+import { useAuth } from "../../components/Context/AuthProvider";
 
 
 const Products = () => {
+  const { searchQuery } = useAuth();
   const [productsData, setProductsData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 6;
+
 
 
   //Get product
@@ -49,8 +53,13 @@ const Products = () => {
       })
   }
 
+  // Filter products based on search query
+  const filteredProducts = productsData.filter((product) =>
+    product.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   //handle Modal
-  const handleOpenModal = (product) =>{
+  const handleOpenModal = (product) => {
     setSelectedProduct(product);
     setIsModalOpen(true);
   }
@@ -58,6 +67,19 @@ const Products = () => {
   //product button style
   const buttonStyle = "w-6 h-6 p-1 rounded cursor-pointer transition delay-150 duration-300 ease-in-out";
 
+
+  // Handle Pagination
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  // Calculate the products to display for the current page
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+
+  // Calculate the total number of pages
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
 
   if (loading) {
     return <p>Loading ...</p>
@@ -69,8 +91,10 @@ const Products = () => {
         <FaGlobe className="text-green-600" />
         <p className="flex items-center gap-3 text-green-600"><Link to="/dashboard">Dashboard</Link> <IoMdArrowDropright /> <span className="text-gray-700">Products</span> </p>
       </div>
-      <div className="gap-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-        {productsData?.map((product) => (
+      {filteredProducts.length === 0 ? (
+        <p className="text-center text-zinc-600 text-2xl h-84 flex justify-center items-center">No Product Match !</p>
+      ) : (<div className="gap-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        {currentProducts?.map((product) => (
           /* eslint-disable no-console */
           <div key={product._id} className="flex items-center gap-3">
             <div className="w-64">
@@ -86,19 +110,37 @@ const Products = () => {
               <p className="text-zinc-700">Price : $ <span className="font-bold text-black text-lg">{product.price}</span>
               </p>
             </div>
-            <div className="space-y-2  ">
-              <FaRegEye 
-              onClick={() =>handleOpenModal(product)} className={`bg-green-300 hover:bg-green-200 ${buttonStyle}`} />
-              <Link to={`/dashboard/update/${product._id}`}><FaPen className={`bg-gray-500 hover:bg-gray-300 ${buttonStyle}`} /></Link>
-              <ImBin className={`bg-red-500 hover:bg-red-300 ${buttonStyle}`} onClick={() => handleDelete(product._id)} />
+            <div className="space-y-2">
+              {/* Modal Button */}
+              <div><FaRegEye
+                onClick={() => handleOpenModal(product)} className={`bg-green-300 hover:bg-green-200 ${buttonStyle}`} /></div>
+              <div><Link to={`/dashboard/update/${product._id}`}><FaPen className={`bg-gray-500 hover:bg-gray-300 ${buttonStyle}`} /></Link></div>
+              <div><ImBin className={`bg-red-500 hover:bg-red-300 ${buttonStyle}`} onClick={() => handleDelete(product._id)} /></div>
             </div>
           </div>
 
         ))}
+      </div>)}
+
+
+      {/* Pagination */}
+      <div className="flex justify-end gap-2 my-10">
+        {Array.from({ length: totalPages }, (_, index) => (
+          <Button
+            size="sm"
+            key={index + 1}
+            color={currentPage === index + 1 ? "primary" : "default"}
+            onPress={() => handlePageChange(index + 1)}
+            className={`rounded ${currentPage === index + 1 ? "bg-green-400 text-white" : "bg-gray-200"}`}
+          >
+            {index + 1}
+          </Button>
+        ))}
       </div>
-      <Pagination loop showControls color="success" initialPage={1} total={5} className="pt-24 mx-auto" />
-      {selectedProduct && <ProductModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} product={selectedProduct}/>}
-      
+
+      {/* Single Product View With Modal */}
+      {selectedProduct && <ProductModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} product={selectedProduct} />}
+
     </>
   )
 };
