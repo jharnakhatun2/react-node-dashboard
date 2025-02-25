@@ -4,11 +4,12 @@ import { FaRegEye } from "react-icons/fa6";
 import { FaPen } from "react-icons/fa";
 import { ImBin } from "react-icons/im";
 import { Button } from "@heroui/react";
-import { FaGlobe } from "react-icons/fa";
-import { IoMdArrowDropright } from "react-icons/io";
 import { Link } from "react-router";
 import ProductModal from "./ProductModal";
 import { useAuth } from "../../components/Context/AuthProvider";
+import DashboardLink from "../../util/DashboardLink/DashboardLink";
+import Loader from "../../util/Loader/Loader";
+
 
 
 const Products = () => {
@@ -82,14 +83,14 @@ const Products = () => {
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
 
   if (loading) {
-    return <p>Loading ...</p>
+    return <Loader />
   }
 
   return (
     <>
       <div className="flex items-center gap-1 pb-5">
-        <FaGlobe className="text-green-600" />
-        <p className="flex items-center gap-3 text-green-600"><Link to="/dashboard">Dashboard</Link> <IoMdArrowDropright /> <span className="text-gray-700">Products</span> </p>
+        <DashboardLink />
+        <p className="text-gray-700">Products ({productsData.length})</p>
       </div>
       {filteredProducts.length === 0 ? (
         <p className="text-center text-zinc-600 text-2xl h-84 flex justify-center items-center">No Product Match !</p>

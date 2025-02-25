@@ -1,13 +1,16 @@
 import React from "react"
 import Chart from "./Chart";
+import DashboardLink from "../../util/DashboardLink/DashboardLink";
 
 const Dashboard = () => {
     return (
      <>
-      {/* Main Content */}
-      <div className="">
+      
         
-
+     
+        <DashboardLink/>
+         
+      
         {/* Stats Cards */}
         <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="bg-white p-6 rounded-lg shadow">
@@ -29,7 +32,6 @@ const Dashboard = () => {
         <h2 className="uppercase pb-5">Sales Revenue :</h2>
         <Chart/>
         </div>
-      </div>
       </>
     )
 };

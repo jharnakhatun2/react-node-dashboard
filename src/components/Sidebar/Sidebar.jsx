@@ -12,9 +12,9 @@ const Sidebar = () => {
 
   return (
     <aside className="text-marcellus w-64 bg-white shadow-lg p-6 hidden sm:flex flex-col items-center">
-      <Image alt="HeroUI hero Image"
+      <Link to='/dashboard'><Image alt="HeroUI hero Image"
         src="https://i.ibb.co.com/wNSNYFtg/logo123.webp"
-        className="w-24 lg:w-32 " />
+        className="w-24 lg:w-32 " /></Link>
 
       <nav>
         <ul className="space-y-4 py-32">

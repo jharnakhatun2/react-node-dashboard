@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
 
-
 body{
     /* font-family: "Marcellus", serif; */
     font-family: "Roboto", serif;
@@ -11,3 +10,13 @@ body{
     font-weight: 400;
     font-style: normal;
   }
+
+@layer components {
+    .input-style {
+      @apply block w-full grow py-3 pr-3 pl-5 text-base text-gray-700 
+             placeholder:text-gray-400 bg-gray-200 focus:outline-none 
+             sm:text-sm border rounded border-gray-200 hover:shadow-sm 
+             transition delay-150 duration-300 ease-in-out;
+    }
+  }
+

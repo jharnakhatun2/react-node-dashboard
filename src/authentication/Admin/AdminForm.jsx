@@ -1,7 +1,7 @@
 import {Button, Form, Input } from "@heroui/react";
 import React, { useState } from "react"
 
-const LoginForm = () => {
+const AdminForm = () => {
     const [action, setAction] = useState(null);
   return (
     <Form
@@ -10,7 +10,6 @@ const LoginForm = () => {
       onSubmit={(e) => {
         e.preventDefault();
         let data = Object.fromEntries(new FormData(e.currentTarget));
-
         setAction(`submit ${JSON.stringify(data)}`);
       }}
     >
@@ -36,4 +35,4 @@ const LoginForm = () => {
   )
 };
 
-export default LoginForm;
+export default AdminForm;
