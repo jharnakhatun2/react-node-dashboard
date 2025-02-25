@@ -1,27 +1,36 @@
 import React from "react"
-import Sidebar from "../../components/Sidebar/Sidebar";
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
-import { Outlet } from "react-router";
-import { Divider } from "@heroui/react";
-
+import Chart from "./Chart";
 
 const Dashboard = () => {
     return (
-        <div className="bg-gray-100 flex w-full min-h-screen">
-            {/* Sidebar */}
-            <Sidebar />
-            {/* Main Content */}
-            <main className="flex-1 px-8 pt-8">
-                {/* Header */}
-                <Header />
-                {/* Children */}
-                <Outlet />
-                {/* Footer */}
-                <Footer />
+     <>
+      {/* Main Content */}
+      <div className="">
+        
 
-            </main>
+        {/* Stats Cards */}
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="bg-white p-6 rounded-lg shadow">
+            <h3 className="text-gray-500">Total Users</h3>
+            <p className="text-3xl font-bold">1,234</p>
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow">
+            <h3 className="text-gray-500">Total Revenue</h3>
+            <p className="text-3xl font-bold">$12,345</p>
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow">
+            <h3 className="text-gray-500">Active Projects</h3>
+            <p className="text-3xl font-bold">45</p>
+          </div>
         </div>
+
+        {/* Chart */}
+        <div className="py-10">
+        <h2>Performance</h2>
+        <Chart/>
+        </div>
+      </div>
+      </>
     )
 };
 

@@ -31,8 +31,8 @@ const LoginForm = () => {
       />
       
       <div className="flex gap-2">
-        <Button className="bg-green-300 uppercase rounded" type="submit">
-          Submit
+        <Button className="bg-green-300 uppercase rounded cursor-pointer text-sm font-bold text-gray-700" type="submit">
+          LogIn
         </Button>
       </div>
       {action && (

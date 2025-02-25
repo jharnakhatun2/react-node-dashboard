@@ -7,6 +7,7 @@ import AddNew from './pages/Products/AddNew.jsx'
 import EditProduct from './pages/Products/EditProduct.jsx'
 import Login from './pages/Login/Login.jsx'
 import AuthProvider from './components/Context/AuthProvider.jsx'
+import Layout from './components/Layout/Layout.jsx'
 
 
 createRoot(document.getElementById('root')).render(
@@ -14,12 +15,12 @@ createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <Routes>
     <Route path='/' element={<Login />}/>
-      <Route path="/dashboard" element={<Dashboard />} >
+      <Route path="/dashboard" element={<Layout />} >
+      <Route index element={<Dashboard/>}/>
       <Route path='products' element={<Products/>}/>
       <Route path='add-new' element={<AddNew/>}/>
       <Route path='products' element={<Products/>}/>
       <Route path='update/:id' element={<EditProduct/>}/>
-      
       </Route>
     </Routes>
   </BrowserRouter>,
