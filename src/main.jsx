@@ -11,8 +11,9 @@ import Layout from './components/Layout/Layout.jsx'
 
 
 createRoot(document.getElementById('root')).render(
-  <AuthProvider>
+  
   <BrowserRouter>
+  <AuthProvider>
     <Routes>
     <Route path='/' element={<Login />}/>
       <Route path="/dashboard" element={<Layout />} >
@@ -23,6 +24,7 @@ createRoot(document.getElementById('root')).render(
       <Route path='update/:id' element={<EditProduct/>}/>
       </Route>
     </Routes>
+    </AuthProvider>
   </BrowserRouter>,
-  </AuthProvider>
+ 
 )
