@@ -4,34 +4,34 @@ import React, { useState } from "react"
 const AdminForm = () => {
     const [action, setAction] = useState(null);
   return (
-    <Form
-      className="w-full max-w-xs flex flex-col gap-4 py-5"
-      onReset={() => setAction("reset")}
-      onSubmit={(e) => {
-        e.preventDefault();
-        let data = Object.fromEntries(new FormData(e.currentTarget));
-        setAction(`submit ${JSON.stringify(data)}`);
-      }}
-    >
-      <Input
-        isRequired
-        errorMessage="Please enter a valid username"
-        name="username"
-        placeholder="Username"
-        type="text"
-      />
+    <form className="space-y-5 my-5">
+                <div>
+                    <input
+                        type="text"
+                        placeholder="User Name"
+                        name="name"
+                        className="input-style bg-[#f3e5d3] border-[#faeedc]"
+                        required
+                    />
+                </div>
+                <div>
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        name="password"
+                        className="input-style bg-[#f3e5d3] border-[#faeedc]"
+                        required
+                    />
+                </div>
 
-      <Input
-        isRequired
-        errorMessage="Please enter a valid password"
-        name="password"
-        placeholder="Password"
-        type="password"
-      />
-      <Button className="mx-auto w-full bg-green-300 uppercase rounded cursor-pointer text-sm font-bold text-gray-700" type="submit">
-          LogIn
-        </Button>      
-    </Form>
+                <div>
+                    <input
+                        type="submit"
+                        value="Log In"
+                        className="bg-green-200 text-gray-700 font-medium md:max-w-full uppercase input-style cursor-pointer"
+                    />
+                </div>
+            </form>
   )
 };
 
