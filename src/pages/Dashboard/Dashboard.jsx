@@ -4,13 +4,8 @@ import DashboardLink from "../../util/DashboardLink/DashboardLink";
 
 const Dashboard = () => {
     return (
-     <>
-      
-        
-     
+     <>     
         <DashboardLink/>
-         
-      
         {/* Stats Cards */}
         <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="bg-white p-6 rounded-lg shadow">

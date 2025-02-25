@@ -24,7 +24,7 @@ const Sidebar = () => {
         </ul>
       </nav>
 
-<div className="flex items-center gap-2 bg-red-300 p-2 rounded"><MdLogout /><Link>Log Out</Link></div>
+<div className="flex items-center gap-2 bg-red-300 p-2 rounded mt-10"><MdLogout /><Link>Log Out</Link></div>
     </aside>
   )
 };
