@@ -5,14 +5,14 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCoMHf6cYGr-96xx3tTHSbM3f6vwRsZRUo",
-  authDomain: "bambo-brush.firebaseapp.com",
-  projectId: "bambo-brush",
-  storageBucket: "bambo-brush.firebasestorage.app",
-  messagingSenderId: "611268782067",
-  appId: "1:611268782067:web:f08d9878085736ed28d486"
+  apiKey: import.meta.env.VITE_APIKEY,
+  authDomain: import.meta.env.VITE_AUTHDOMAIN,
+  projectId: import.meta.env.VITE_PROJECTID,
+  storageBucket: import.meta.env.VITE_STORAGEBUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGINGSENDERID,
+  appId: import.meta.env.VITE_APPID,
 };
-
+console.log(firebaseConfig)
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export default app;

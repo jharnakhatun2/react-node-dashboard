@@ -3,11 +3,12 @@ import { useParams } from "react-router";
 import swal from 'sweetalert';
 import Loader from "../../util/Loader/Loader";
 import DashboardLink from "../../util/DashboardLink/DashboardLink";
+import { useAuth } from "../../components/Context/AuthProvider";
 
 const EditProduct = () => {
   const [singleData, setSingleData] = useState([]);
-  const [loading, setLoading] = useState(true)
   const { id } = useParams();
+  const {loading, setLoading} = useAuth();
 
 
   useEffect(() => {
