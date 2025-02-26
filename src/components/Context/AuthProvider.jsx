@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
-import {getAuth} from "firebase/auth";
+import {createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword} from "firebase/auth";
 
 import app from "../../firebase/firebase.init";
 
@@ -12,16 +12,24 @@ const AuthProvider = ({ children }) => {
     const auth = getAuth(app);
 
 
-    //create new user
+    //registration with new user
     const createUser = (email, pass) =>{
+        setLoading(true);
         return createUserWithEmailAndPassword(auth, email, pass)
     }
+
+    //Login with existing user
+    const login = (email, pass) =>{
+        setLoading(true);
+        return signInWithEmailAndPassword(auth, email, pass)
+    }
+
     // Handler for search input change
     const handleSearchChange = (query) => {
         setSearchQuery(query);
     };
 
-    const allValues = { createUser,searchQuery, onSearchChange: handleSearchChange, loading, setLoading }
+    const allValues = { user, createUser, login, searchQuery, onSearchChange: handleSearchChange, loading, setLoading }
 
     return (
         <AuthContext.Provider value={allValues}>

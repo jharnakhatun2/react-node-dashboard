@@ -1,9 +1,10 @@
-import {Button, Form, Input } from "@heroui/react";
-import React, { useState } from "react"
+import React from "react"
 import { useForm } from "react-hook-form";
+import { useAuth } from "../../components/Context/AuthProvider";
 
 const AdminForm = () => {
-    const { register, handleSubmit, formState: { errors }, reset, watch } = useForm();
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
+    const {login, loading} = useAuth();
 
     //handle form submit
     const onSubmit = (data) => {

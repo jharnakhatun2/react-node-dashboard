@@ -1,9 +1,11 @@
 import React from "react"
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
+import { useAuth } from "../../components/Context/AuthProvider";
 
 const Login = () => {
-    const { register, handleSubmit, formState: { errors }, reset, watch } = useForm();
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
+    const {login, loading} = useAuth();
 
     //handle form submit
     const onSubmit = (data) => {
@@ -37,8 +39,8 @@ const Login = () => {
                     {...register("password", {
                         required: "required",
                         minLength: {
-                          value: 6,
-                          message: "Min length is 6",
+                          value: 9,
+                          message: "Min length is 9",
                         },
                       })}
                         type="password"

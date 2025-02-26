@@ -1,16 +1,26 @@
 import React from "react"
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
+import { useAuth } from "../../components/Context/AuthProvider";
 
 const Register = () => {
-    const { register, handleSubmit, formState: { errors }, reset, watch } = useForm();
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
+    const {createUser,loading} = useAuth();
 
     //Handle form submit
     const onSubmit = (data) => {
         const {name, email, password} = data ;
         console.log(`Name: ${name} Email : ${email}, Password : ${password}`)
+        createUser(email, password)
+        .then(result => {
+            console.log(result.user);
+        })
+        .catch(error=>{
+            console.log(error.code, error.message)
+        }) 
         reset()
       }
+      
     return (
         <div className="w-full sm:w-md bg-[#f8f0e4] p-9 rounded-2xl shadow-2xl m-5">
             <h1 className="uppercase text-2xl font-bold text-center text-gray-500">Bamboo Brush</h1>
@@ -50,8 +60,8 @@ const Register = () => {
                     {...register("password", {
                         required: "required",
                         minLength: {
-                          value: 6,
-                          message: "Min length is 6",
+                          value: 9,
+                          message: "Min length is 9",
                         },
                       })}
                         type="password"
