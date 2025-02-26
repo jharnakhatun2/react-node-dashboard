@@ -1,30 +1,48 @@
 import React from "react"
 import { useForm } from "react-hook-form";
 import { useAuth } from "../../components/Context/AuthProvider";
+import { useNavigate } from "react-router";
+import Loader from "../../util/Loader/Loader";
 
 const AdminForm = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const {login, loading} = useAuth();
+    const navigate = useNavigate();
 
     //handle form submit
     const onSubmit = (data) => {
         const {email, password} = data;
         console.log(`Email : ${email}, Password : ${password}`)
+        login(email, password)
+            .then(result => {
+                console.log(result.user);
+                navigate("/dashboard");
+            })
+            .catch(error => {
+                console.log(error.code, error.message)
+            })
         reset()
       }
 
+      if(loading){
+        return <Loader/>
+    }
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 my-5">
                 <div>
                     <input
-                    {...register("name", {
+                    {...register("email", {
                         required: "required",
+                        pattern: {
+                          value: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
+                          message: "Not match email format",
+                        },
                       })}
-                        type="text"
-                        placeholder="User Name"
+                        type="email"
+                        placeholder="Email"
                         className="input-style bg-[#f3e5d3] border-[#faeedc]"
                     />
-                    {errors.name && <small className="text-red-500" role="alert">User Name is required</small>}
+                    {errors.email && <small className="text-red-500" role="alert">Email is required</small>}
                 </div>
                 
                 

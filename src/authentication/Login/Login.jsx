@@ -2,54 +2,65 @@ import React from "react"
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
 import { useAuth } from "../../components/Context/AuthProvider";
+import Loader from "../../util/Loader/Loader";
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
-    const {login, loading} = useAuth();
+    const { login, loading } = useAuth();
 
     //handle form submit
     const onSubmit = (data) => {
-        const {email, password} = data;
+        const { email, password } = data;
         console.log(`Email : ${email}, Password : ${password}`)
+        login(email, password)
+            .then(result => {
+                console.log(result.user);
+            })
+            .catch(error => {
+                console.log(error.code, error.message)
+            })
         reset()
-      }
-  return (
-    <div className="w-full sm:w-md bg-[#f8f0e4] p-9 rounded-2xl shadow-2xl m-5">
+    }
+    if(loading){
+        return <Loader/>
+    }
+    return (
+        <div className="w-full sm:w-md bg-[#f8f0e4] p-9 rounded-2xl shadow-2xl m-5">
             <h1 className="uppercase text-2xl font-bold text-center text-gray-500">Bamboo Brush</h1>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 my-5">
                 <div>
                     <input
-                    {...register("email", {
-                        required: "required",
-                        pattern: {
-                          value: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
-                          message: "Not match email format",
-                        },
-                      })}
+                        {...register("email", {
+                            required: "required",
+                            pattern: {
+                                value: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
+                                message: "Not match email format",
+                            },
+                        })}
                         type="email"
                         placeholder="Email"
                         className="input-style bg-[#f3e5d3] border-[#faeedc]"
                     />
                     {errors.email && <small className="text-red-500" role="alert">{errors.email.message}</small>}
                 </div>
-                
+
 
                 <div>
                     <input
-                    {...register("password", {
-                        required: "required",
-                        minLength: {
-                          value: 9,
-                          message: "Min length is 9",
-                        },
-                      })}
+                        {...register("password", {
+                            required: "required",
+                            minLength: {
+                                value: 9,
+                                message: "Min length is 9",
+                            },
+                        })}
                         type="password"
                         placeholder="Password"
                         className="input-style bg-[#f3e5d3] border-[#faeedc]"
                     />
                     {errors.password && <small className="text-red-500" role="alert">{errors.password.message}</small>}
                 </div>
-                
+
 
 
                 <div>
@@ -85,7 +96,7 @@ const Login = () => {
             </button>
             <p className="text-center text-sm text-gray-500 pt-3">Have no Account ? <Link to='/register' className="text-green-400 font-bold">Create Account</Link></p>
         </div>
-  )
+    )
 };
 
 export default Login;

@@ -29,7 +29,7 @@ const AuthProvider = ({ children }) => {
         setSearchQuery(query);
     };
 
-    const allValues = { user, createUser, login, searchQuery, onSearchChange: handleSearchChange, loading, setLoading }
+    const allValues = {auth, user, createUser, login, searchQuery, onSearchChange: handleSearchChange, loading, setLoading }
 
     return (
         <AuthContext.Provider value={allValues}>

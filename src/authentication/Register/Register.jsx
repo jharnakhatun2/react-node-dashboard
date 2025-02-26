@@ -2,10 +2,12 @@ import React from "react"
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
 import { useAuth } from "../../components/Context/AuthProvider";
+import { updateProfile } from "firebase/auth";
+import Loader from "../../util/Loader/Loader";
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
-    const {createUser,loading} = useAuth();
+    const {auth, createUser,loading} = useAuth();
 
     //Handle form submit
     const onSubmit = (data) => {
@@ -14,12 +16,19 @@ const Register = () => {
         createUser(email, password)
         .then(result => {
             console.log(result.user);
+            updateProfile(auth.currentUser, {
+                displayName: name,
+              })
         })
         .catch(error=>{
             console.log(error.code, error.message)
         }) 
         reset()
       }
+
+      if(loading){
+        return <Loader/>
+    }
       
     return (
         <div className="w-full sm:w-md bg-[#f8f0e4] p-9 rounded-2xl shadow-2xl m-5">

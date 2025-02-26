@@ -1,13 +1,26 @@
 import { Image } from "@heroui/image";
 import React from "react"
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { GiToothbrush } from "react-icons/gi";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { MdLogout } from "react-icons/md";
 import { BsBarChart } from "react-icons/bs";
+import { useAuth } from "../Context/AuthProvider";
+import { signOut } from "firebase/auth";
 
 
 const Sidebar = () => {
+  const {auth} = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogOut = () => {
+    signOut(auth)
+      .then(() => {
+        console.log("User logged out successfully.");
+        navigate("/"); 
+      })
+      .catch((error) => console.error("Error logging out:", error));
+  };
 
 
   return (
@@ -24,7 +37,7 @@ const Sidebar = () => {
         </ul>
       </nav>
 
-<div className="flex items-center gap-2 bg-red-300 p-2 rounded mt-10"><MdLogout /><Link>Log Out</Link></div>
+<div onClick={handleLogOut} className="flex items-center gap-2 bg-red-300 p-2 rounded mt-10"><MdLogout /><Link>Log Out</Link></div>
     </aside>
   )
 };
