@@ -1,29 +1,45 @@
 import {Button, Form, Input } from "@heroui/react";
 import React, { useState } from "react"
+import { useForm } from "react-hook-form";
 
 const AdminForm = () => {
-    const [action, setAction] = useState(null);
+    const { register, handleSubmit, formState: { errors }, reset, watch } = useForm();
+
+    //handle form submit
+    const onSubmit = (data) => {
+        const {email, password} = data;
+        console.log(`Email : ${email}, Password : ${password}`)
+        reset()
+      }
+
   return (
-    <form className="space-y-5 my-5">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 my-5">
                 <div>
                     <input
+                    {...register("name", {
+                        required: "required",
+                      })}
                         type="text"
                         placeholder="User Name"
-                        name="name"
                         className="input-style bg-[#f3e5d3] border-[#faeedc]"
-                        required
                     />
+                    {errors.name && <small className="text-red-500" role="alert">User Name is required</small>}
                 </div>
+                
+                
                 <div>
                     <input
+                    {...register("password", {
+                        required: "required",
+                      })}
                         type="password"
                         placeholder="Password"
-                        name="password"
                         className="input-style bg-[#f3e5d3] border-[#faeedc]"
-                        required
                     />
+                    {errors.password && <small className="text-red-500" role="alert">Password is required</small>}
                 </div>
-
+                
+                
                 <div>
                     <input
                         type="submit"

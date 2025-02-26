@@ -1,29 +1,54 @@
 import React from "react"
+import { useForm } from "react-hook-form";
 import { Link } from "react-router";
 
 const Login = () => {
+    const { register, handleSubmit, formState: { errors }, reset, watch } = useForm();
+
+    //handle form submit
+    const onSubmit = (data) => {
+        const {email, password} = data;
+        console.log(`Email : ${email}, Password : ${password}`)
+        reset()
+      }
   return (
     <div className="w-full sm:w-md bg-[#f8f0e4] p-9 rounded-2xl shadow-2xl m-5">
             <h1 className="uppercase text-2xl font-bold text-center text-gray-500">Bamboo Brush</h1>
-            <form className="space-y-5 my-5">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 my-5">
                 <div>
                     <input
+                    {...register("email", {
+                        required: "required",
+                        pattern: {
+                          value: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
+                          message: "Not match email format",
+                        },
+                      })}
                         type="email"
                         placeholder="Email"
-                        name="title"
                         className="input-style bg-[#f3e5d3] border-[#faeedc]"
-                        required
                     />
+                    {errors.email && <small className="text-red-500" role="alert">{errors.email.message}</small>}
                 </div>
+                
+
                 <div>
                     <input
+                    {...register("password", {
+                        required: "required",
+                        minLength: {
+                          value: 6,
+                          message: "Min length is 6",
+                        },
+                      })}
                         type="password"
                         placeholder="Password"
-                        name="password"
                         className="input-style bg-[#f3e5d3] border-[#faeedc]"
-                        required
                     />
+                    {errors.password && <small className="text-red-500" role="alert">{errors.password.message}</small>}
                 </div>
+                
+
 
                 <div>
                     <input
