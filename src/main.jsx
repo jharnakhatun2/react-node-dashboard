@@ -11,6 +11,7 @@ import Admin from './authentication/Admin/Admin.jsx'
 import Register from './authentication/Register/Register.jsx'
 import Login from './authentication/Login/Login.jsx'
 import AuthLayout from './components/AuthLayout/AuthLayout.jsx'
+import PrivateRoute from './authentication/PrivateRoute/PrivateRoute.jsx'
 
 
 createRoot(document.getElementById('root')).render(
@@ -24,7 +25,7 @@ createRoot(document.getElementById('root')).render(
           <Route path='login' element={<Login />} />
         </Route>
 
-        <Route path="/dashboard" element={<Layout />} >
+        <Route path="/dashboard" element={<PrivateRoute><Layout /></PrivateRoute>} >
           <Route index element={<Dashboard />} />
           <Route path='products' element={<Products />} />
           <Route path='add-new' element={<AddNew />} />

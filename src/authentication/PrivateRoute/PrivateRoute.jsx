@@ -1,17 +1,19 @@
-import React, { useEffect } from "react"
 import { useNavigate } from "react-router";
+import { useAuth } from "../../components/Context/AuthProvider";
+import Loader from "../../util/Loader/Loader";
 
 const PrivateRoute = ({children}) => {
     const navigate = useNavigate();
+    const {user, loading} = useAuth();
 
-    useEffect(()=>{
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            if(!user){
-                navigate('/');
-            }
-        });
-        return ()=> unsubscribe();
-    },[navigate])
+    if(!user){
+        navigate('/');
+    }
+
+    if(loading){
+        return <Loader/>
+    }
+    
   return children;
 };
 

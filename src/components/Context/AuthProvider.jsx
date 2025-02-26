@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useState } from "react";
-import {createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword} from "firebase/auth";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword} from "firebase/auth";
 
 import app from "../../firebase/firebase.init";
 
@@ -23,6 +23,18 @@ const AuthProvider = ({ children }) => {
         setLoading(true);
         return signInWithEmailAndPassword(auth, email, pass)
     }
+
+    //get current user
+    useEffect(() => {
+        const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+            console.log("User Observing");
+            setUser(currentUser);
+            setLoading(false);
+        });
+        return () => {
+            unSubscribe();
+        };
+    }, []);
 
     // Handler for search input change
     const handleSearchChange = (query) => {
