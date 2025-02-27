@@ -4,10 +4,12 @@ import { Link } from "react-router";
 import { useAuth } from "../../components/Context/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import swal from 'sweetalert';
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const {auth, createUser} = useAuth();
+    const provider = new GoogleAuthProvider();
 
     //Handle form submit
     const onSubmit = (data) => {
@@ -32,7 +34,13 @@ const Register = () => {
         }) 
         reset()
       }
-
+    
+    //Handle Google signin
+    const handleGoogleSingIn = () => {
+        signInWithPopup(auth, provider)
+            .then((result) => console.log(result.user))
+            .catch((error) => console.error(error));
+    }
   
     return (
         <div className="w-full sm:w-md bg-[#f8f0e4] p-9 rounded-2xl shadow-2xl m-5">
@@ -94,6 +102,7 @@ const Register = () => {
             </form>
             <hr className="text-[#e6d4be] mb-5" />
             <button
+            onClick={handleGoogleSingIn}
                 className="w-full font-bold shadow-sm rounded-lg py-3 bg-gray-500 text-white flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline cursor-pointer">
                 <div className="bg-white p-2 rounded-full">
                     <svg className="w-4" viewBox="0 0 533.5 544.3">
