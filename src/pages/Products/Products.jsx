@@ -9,6 +9,7 @@ import ProductModal from "./ProductModal";
 import { useAuth } from "../../components/Context/AuthProvider";
 import DashboardLink from "../../util/DashboardLink/DashboardLink";
 import Loader from "../../util/Loader/Loader";
+import Swal from "sweetalert2";
 
 
 
@@ -35,7 +36,18 @@ const Products = () => {
 
   //Delete product
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/product/${id}`, { method: 'DELETE' })
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/product/${id}`, { method: 'DELETE' })
       .then(res => res.json())
       .then(data => {
         console.log(data);
@@ -51,7 +63,13 @@ const Products = () => {
           setProductsData(allData);
         }
       })
+      }
+    });
+
+
+    
   }
+  
 
   // Filter products based on search query
   const filteredProducts = productsData.filter((product) =>
