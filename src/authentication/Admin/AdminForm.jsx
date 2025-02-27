@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useAuth } from "../../components/Context/AuthProvider";
 import { useNavigate } from "react-router";
 import Loader from "../../util/Loader/Loader";
+import swal from 'sweetalert';
 
 const AdminForm = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
@@ -16,6 +17,12 @@ const AdminForm = () => {
         login(email, password)
             .then(result => {
                 console.log(result.user);
+                swal({
+                  title: "Login successful!",
+                  text: "You're logged in! Redirecting to your dashboard...",
+                  icon: "success",
+                  dangerMode: false,
+                })
                 navigate("/dashboard");
             })
             .catch(error => {
