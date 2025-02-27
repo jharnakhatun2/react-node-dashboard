@@ -2,11 +2,11 @@ import React from "react"
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
 import { useAuth } from "../../components/Context/AuthProvider";
-import Loader from "../../util/Loader/Loader";
+import swal from 'sweetalert';
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
-    const { login, loading } = useAuth();
+    const { login } = useAuth();
 
     //handle form submit
     const onSubmit = (data) => {
@@ -15,15 +15,19 @@ const Login = () => {
         login(email, password)
             .then(result => {
                 console.log(result.user);
+                swal({
+                    title: "Login successful!",
+                    text: "You're logged in!",
+                    icon: "success",
+                    dangerMode: false,
+                  })
             })
             .catch(error => {
                 console.log(error.code, error.message)
             })
         reset()
     }
-    if(loading){
-        return <Loader/>
-    }
+   
     return (
         <div className="w-full sm:w-md bg-[#f8f0e4] p-9 rounded-2xl shadow-2xl m-5">
             <h1 className="uppercase text-2xl font-bold text-center text-gray-500">Bamboo Brush</h1>

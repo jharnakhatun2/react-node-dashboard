@@ -3,11 +3,11 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router";
 import { useAuth } from "../../components/Context/AuthProvider";
 import { updateProfile } from "firebase/auth";
-import Loader from "../../util/Loader/Loader";
+import swal from 'sweetalert';
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
-    const {auth, createUser,loading} = useAuth();
+    const {auth, createUser} = useAuth();
 
     //Handle form submit
     const onSubmit = (data) => {
@@ -18,6 +18,13 @@ const Register = () => {
             console.log(result.user);
             updateProfile(auth.currentUser, {
                 displayName: name,
+              });
+
+              swal({
+                title: "Registration successful",
+                text: "Account created successfully!",
+                icon: "success",
+                dangerMode: false,
               })
         })
         .catch(error=>{
@@ -26,10 +33,7 @@ const Register = () => {
         reset()
       }
 
-      if(loading){
-        return <Loader/>
-    }
-      
+  
     return (
         <div className="w-full sm:w-md bg-[#f8f0e4] p-9 rounded-2xl shadow-2xl m-5">
             <h1 className="uppercase text-2xl font-bold text-center text-gray-500">Bamboo Brush</h1>

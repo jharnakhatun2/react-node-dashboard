@@ -7,7 +7,7 @@ import swal from 'sweetalert';
 
 const AdminForm = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
-    const {login, loading} = useAuth();
+    const {login} = useAuth();
     const navigate = useNavigate();
 
     //handle form submit
@@ -31,9 +31,7 @@ const AdminForm = () => {
         reset()
       }
 
-      if(loading){
-        return <Loader/>
-    }
+    
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 my-5">
                 <div>
