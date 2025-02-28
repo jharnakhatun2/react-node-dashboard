@@ -4,6 +4,7 @@ import { Image } from "@heroui/image";
 import { Input } from "@heroui/input";
 import { User } from "@heroui/user";
 import { Link } from "react-router";
+import SmallNav from "./SmallNav";
 
 
 
@@ -18,6 +19,7 @@ const Header = () => {
                 src="https://i.ibb.co.com/wNSNYFtg/logo123.webp"
                 className="w-16 sm:hidden"
             /></Link>
+            
             <div className="flex gap-2">
                 <Input
                     placeholder="Search..."
@@ -30,7 +32,11 @@ const Header = () => {
                         src: "https://avatars.githubusercontent.com/u/30373425?v=4",
                     }}
                 />
+                <div className="sm:hidden">
+                <SmallNav />
+                </div>
             </div>
+            
         </header>
     );
 };

@@ -110,7 +110,7 @@ const Products = () => {
         <p className="text-gray-700">Products ({productsData.length})</p>
       </div>
       {filteredProducts.length === 0 ? (
-        <p className="text-center text-zinc-600 text-2xl h-84 flex justify-center items-center">No Product Match !</p>
+        <p className="text-center text-zinc-600 text-2xl h-84 flex justify-center items-center">No Product!</p>
       ) : (<div className="gap-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {currentProducts?.map((product) => (
           /* eslint-disable no-console */
