@@ -18,10 +18,22 @@ const Register = () => {
         createUser(email, password)
         .then(result => {
             console.log(result.user);
+            //update user profile name
             updateProfile(auth.currentUser, {
                 displayName: name,
               });
+              const usersInfo = {name, email}
+              fetch('http://localhost:5000/users',{
+                method: 'POST',
+                headers : {
+                    'Content-Type' : 'application/json',
+                  },
+                  body : JSON.stringify(usersInfo)
+              })
+              .then(res=>res.json())
+              .then(data => console.log(data))
 
+              //show success message
               swal({
                 title: "Registration successful",
                 text: "Account created successfully!",
