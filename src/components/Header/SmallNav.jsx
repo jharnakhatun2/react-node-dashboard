@@ -48,7 +48,7 @@ export default function SmallNav() {
                                     src="https://i.ibb.co.com/wNSNYFtg/logo123.webp"
                                     className="w-16 sm:hidden"
                                 /></Link>
-                                <h1 className="uppercase">Bamboo Brush</h1>
+                                <h1 className="uppercase text-xs">Bamboo Brush</h1>
                             </DrawerHeader>
                             <DrawerBody>
                             <nav>

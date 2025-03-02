@@ -27,7 +27,9 @@ const Sidebar = () => {
     <aside className="text-marcellus w-64 bg-white shadow-lg p-6 hidden sm:flex flex-col items-center">
       <Link to='/dashboard'><Image alt="HeroUI hero Image"
         src="https://i.ibb.co.com/wNSNYFtg/logo123.webp"
-        className="w-24 lg:w-32 " /></Link>
+        className="w-24 lg:w-32 " />
+        <h5 className="uppercase text-xs font-mono text-center">Bamboo Brush</h5>
+        </Link>
 
       <nav>
         <ul className="space-y-4 py-32">
