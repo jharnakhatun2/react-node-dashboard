@@ -7,6 +7,7 @@ import { MdLogout } from "react-icons/md";
 import { BsBarChart } from "react-icons/bs";
 import { useAuth } from "../Context/AuthProvider";
 import { signOut } from "firebase/auth";
+import { FaUsers } from "react-icons/fa";
 
 
 const Sidebar = () => {
@@ -36,6 +37,7 @@ const Sidebar = () => {
           <li className="flex items-center gap-2"><BsBarChart className="text-2xl"/><Link to='/dashboard'> Dashboard</Link></li>
           <li className="flex items-center gap-2"><GiToothbrush className="text-2xl"/><Link to='/dashboard/products'> Products</Link></li>
           <li className="flex items-center gap-2"><IoAddCircleOutline /><Link to='/dashboard/add-new'>Add Product</Link></li>
+          <li className="flex items-center gap-2"><FaUsers /><Link to='/dashboard/users'>Users</Link></li>
         </ul>
       </nav>
 

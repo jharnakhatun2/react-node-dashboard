@@ -12,6 +12,7 @@ import Register from './authentication/Register/Register.jsx'
 import Login from './authentication/Login/Login.jsx'
 import AuthLayout from './components/AuthLayout/AuthLayout.jsx'
 import PrivateRoute from './authentication/PrivateRoute/PrivateRoute.jsx'
+import ErrorPage from './pages/Error/ErrorPage.jsx'
 
 
 createRoot(document.getElementById('root')).render(
@@ -32,6 +33,7 @@ createRoot(document.getElementById('root')).render(
           <Route path='products' element={<Products />} />
           <Route path='update/:id' element={<EditProduct />} />
         </Route>
+        <Route path='*' element={<ErrorPage />} />
       </Routes>
     </AuthProvider>
   </BrowserRouter>,
