@@ -13,6 +13,7 @@ import Login from './authentication/Login/Login.jsx'
 import AuthLayout from './components/AuthLayout/AuthLayout.jsx'
 import PrivateRoute from './authentication/PrivateRoute/PrivateRoute.jsx'
 import ErrorPage from './pages/Error/ErrorPage.jsx'
+import Users from './pages/Users/Users.jsx'
 
 
 createRoot(document.getElementById('root')).render(
@@ -30,8 +31,8 @@ createRoot(document.getElementById('root')).render(
           <Route index element={<Dashboard />} />
           <Route path='products' element={<Products />} />
           <Route path='add-new' element={<AddNew />} />
-          <Route path='products' element={<Products />} />
           <Route path='update/:id' element={<EditProduct />} />
+          <Route path='users' element={<Users />} />
         </Route>
         <Route path='*' element={<ErrorPage />} />
       </Routes>
