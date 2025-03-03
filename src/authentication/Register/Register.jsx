@@ -1,15 +1,17 @@
 import React from "react"
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useAuth } from "../../components/Context/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import swal from 'sweetalert';
+import Swal from 'sweetalert2'
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
-    const { auth, createUser } = useAuth();
+    const { auth, createUser,setLoading } = useAuth();
     const provider = new GoogleAuthProvider();
+    const navigate = useNavigate();
 
     //Handle form submit
     const onSubmit = (data) => {
@@ -24,7 +26,7 @@ const Register = () => {
                 });
                 const creationTime = result.user?.metadata?.creationTime;
                 const usersInfo = { name, email, creationTime }
-                
+
                 //Save user data in mongodb database
                 fetch('http://localhost:5000/users', {
                     method: 'POST',
@@ -43,9 +45,22 @@ const Register = () => {
                     icon: "success",
                     dangerMode: false,
                 })
+
+                navigate('/')
             })
             .catch(error => {
-                console.log(error.code, error.message)
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.error(errorCode)
+                console.error(errorMessage)
+                if (errorCode === "auth/email-already-in-use") {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Email already in used. Please try again!",
+                    });
+                }
+                setLoading(false)
             })
         reset()
     }

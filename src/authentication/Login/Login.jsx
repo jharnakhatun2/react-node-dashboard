@@ -1,6 +1,6 @@
 import React from "react"
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useAuth } from "../../components/Context/AuthProvider";
 import swal from 'sweetalert';
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
@@ -9,6 +9,7 @@ const Login = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const { auth, login } = useAuth();
     const provider = new GoogleAuthProvider();
+    const navigate = useNavigate();
 
     //handle form submit
     const onSubmit = (data) => {
@@ -35,10 +36,11 @@ const Login = () => {
                             icon: "success",
                             dangerMode: false,
                         })
+                        navigate('/')
                     })
             })
             .catch(error => {
-                console.log(error.code, error.message)
+                console.error(error.code, error.message)
                 swal({
                     title: "Error!",
                     text: error.message || "Google sign-in failed. Please try again.",

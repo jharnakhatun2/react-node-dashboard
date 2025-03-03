@@ -30,11 +30,11 @@ const Sidebar = () => {
       <Link to='/dashboard'><Image alt="HeroUI hero Image"
         src="https://i.ibb.co.com/wNSNYFtg/logo123.webp"
         className="w-24 lg:w-32 " />
-        <h5 className="uppercase text-xs font-mono text-center">Bamboo Brush</h5>
+        <h5 className="uppercase text-sm font-mono text-center marcellus">Bamboo Brush</h5>
         </Link>
 
         <nav>
-        <ul className="space-y-4 py-32">
+        <ul className="space-y-3 py-20">
           <li className={`flex items-center gap-2 p-2 rounded ${location.pathname === '/dashboard' ? 'bg-green-500 text-white' : ''}`}>
             <BsBarChart className="text-2xl" />
             <Link to='/dashboard'>Dashboard</Link>
