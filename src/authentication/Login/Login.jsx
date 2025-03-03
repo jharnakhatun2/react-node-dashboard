@@ -7,7 +7,7 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
-    const {auth, login } = useAuth();
+    const { auth, login } = useAuth();
     const provider = new GoogleAuthProvider();
 
     //handle form submit
@@ -17,15 +17,34 @@ const Login = () => {
         login(email, password)
             .then(result => {
                 console.log(result.user);
-                swal({
-                    title: "Login successful!",
-                    text: "You're logged in!",
-                    icon: "success",
-                    dangerMode: false,
+                const lastSignInTime = result.user?.metadata?.lastSignInTime;
+                const usersInfo = { email, lastSignInTime }
+                fetch('http://localhost:5000/users/', {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(usersInfo)
                 })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        swal({
+                            title: "Login successful!",
+                            text: "You're logged in!",
+                            icon: "success",
+                            dangerMode: false,
+                        })
+                    })
             })
             .catch(error => {
                 console.log(error.code, error.message)
+                swal({
+                    title: "Error!",
+                    text: error.message || "Google sign-in failed. Please try again.",
+                    icon: "error",
+                    dangerMode: true,
+                });
             })
         reset()
     }

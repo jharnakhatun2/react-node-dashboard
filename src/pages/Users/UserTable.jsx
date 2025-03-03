@@ -61,21 +61,23 @@ const UserTable = () => {
   }
   return (
     <>
-      <h1>Total Users : {allUsers.length}</h1>
+      <h1>Total Users : <span className="font-bold">{allUsers.length}</span></h1>
       <Table aria-label="Example static collection table">
         <TableHeader>
           <TableColumn>NAME</TableColumn>
           <TableColumn>EMAIL</TableColumn>
           <TableColumn>CREATION TIME</TableColumn>
+          <TableColumn>LAST SIGNIN TIME</TableColumn>
           <TableColumn className="flex justify-center">ACTION</TableColumn>
         </TableHeader>
         <TableBody>
           {
             allUsers?.map((user) => (
-              <TableRow key={user._id}>
+              <TableRow key={user._id} className="text-gray-600 text-md">
                 <TableCell>{user.name}</TableCell>
                 <TableCell>{user.email}</TableCell>
                 <TableCell>{user.creationTime}</TableCell>
+                <TableCell>{user.lastSignInTime}</TableCell>
                 <TableCell onClick={() => handleDelete(user._id)} className="flex justify-center text-xl text-red-600 cursor-pointer hover:text-red-400"><MdOutlineDeleteForever /></TableCell>
               </TableRow>
             ))
