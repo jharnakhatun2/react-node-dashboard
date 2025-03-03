@@ -8,102 +8,105 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
-    const {auth, createUser} = useAuth();
+    const { auth, createUser } = useAuth();
     const provider = new GoogleAuthProvider();
 
     //Handle form submit
     const onSubmit = (data) => {
-        const {name, email, password} = data ;
+        const { name, email, password } = data;
         console.log(`Name: ${name} Email : ${email}, Password : ${password}`)
         createUser(email, password)
-        .then(result => {
-            console.log(result.user);
-            //update user profile name
-            updateProfile(auth.currentUser, {
-                displayName: name,
-              });
-              const usersInfo = {name, email}
-              fetch('http://localhost:5000/users',{
-                method: 'POST',
-                headers : {
-                    'Content-Type' : 'application/json',
-                  },
-                  body : JSON.stringify(usersInfo)
-              })
-              .then(res=>res.json())
-              .then(data => console.log(data))
+            .then(result => {
+                console.log(result.user);
+                //update user profile name
+                updateProfile(auth.currentUser, {
+                    displayName: name,
+                });
+                const creationTime = result.user?.metadata?.creationTime;
+                const usersInfo = { name, email, creationTime }
+                
+                //Save user data in mongodb database
+                fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(usersInfo)
+                })
+                    .then(res => res.json())
+                    .then(data => console.log(data))
 
-              //show success message
-              swal({
-                title: "Registration successful",
-                text: "Account created successfully!",
-                icon: "success",
-                dangerMode: false,
-              })
-        })
-        .catch(error=>{
-            console.log(error.code, error.message)
-        }) 
+                //show success message
+                swal({
+                    title: "Registration successful",
+                    text: "Account created successfully!",
+                    icon: "success",
+                    dangerMode: false,
+                })
+            })
+            .catch(error => {
+                console.log(error.code, error.message)
+            })
         reset()
-      }
-    
+    }
+
     //Handle Google signin
     const handleGoogleSingIn = () => {
         signInWithPopup(auth, provider)
             .then((result) => console.log(result.user))
             .catch((error) => console.error(error));
     }
-  
+
     return (
         <div className="w-full sm:w-md bg-[#f8f0e4] p-9 rounded-2xl shadow-2xl m-5">
             <h1 className="uppercase text-2xl font-bold text-center text-gray-500">Bamboo Brush</h1>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 my-5">
                 <div>
                     <input
-                    {...register("name", {
-                        required: "required",
-                      })}
+                        {...register("name", {
+                            required: "required",
+                        })}
                         type="text"
                         placeholder="Name"
                         className="input-style bg-[#f3e5d3] border-[#faeedc]"
                     />
                     {errors.name && <small className="text-red-500" role="alert">Name is required</small>}
                 </div>
-                
+
 
                 <div>
                     <input
-                    {...register("email", {
-                        required: "required",
-                        pattern: {
-                          value: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
-                          message: "Not match email format",
-                        },
-                      })}
+                        {...register("email", {
+                            required: "required",
+                            pattern: {
+                                value: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
+                                message: "Not match email format",
+                            },
+                        })}
                         type="email"
                         placeholder="Email"
                         className="input-style bg-[#f3e5d3] border-[#faeedc]"
                     />
                     {errors.email && <small className="text-red-500" role="alert">{errors.email.message}</small>}
                 </div>
-                
+
 
                 <div>
                     <input
-                    {...register("password", {
-                        required: "required",
-                        minLength: {
-                          value: 9,
-                          message: "Min length is 9",
-                        },
-                      })}
+                        {...register("password", {
+                            required: "required",
+                            minLength: {
+                                value: 9,
+                                message: "Min length is 9",
+                            },
+                        })}
                         type="password"
                         placeholder="Password"
                         className="input-style bg-[#f3e5d3] border-[#faeedc]"
                     />
                     {errors.password && <small className="text-red-500" role="alert">{errors.password.message}</small>}
                 </div>
-                
+
                 <div>
                     <input
                         type="submit"
@@ -114,7 +117,7 @@ const Register = () => {
             </form>
             <hr className="text-[#e6d4be] mb-5" />
             <button
-            onClick={handleGoogleSingIn}
+                onClick={handleGoogleSingIn}
                 className="w-full font-bold shadow-sm rounded-lg py-3 bg-gray-500 text-white flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline cursor-pointer">
                 <div className="bg-white p-2 rounded-full">
                     <svg className="w-4" viewBox="0 0 533.5 544.3">
