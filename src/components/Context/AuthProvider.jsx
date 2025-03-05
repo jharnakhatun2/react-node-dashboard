@@ -9,7 +9,7 @@ const AuthProvider = ({ children }) => {
     const [searchQuery, setSearchQuery] = useState("");
     const [loading, setLoading] = useState(true);
     const auth = getAuth(app);
-
+    
 
     //registration with new user
     const createUser = (email, pass) =>{

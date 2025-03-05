@@ -14,6 +14,7 @@ import AuthLayout from './components/AuthLayout/AuthLayout.jsx'
 import PrivateRoute from './authentication/PrivateRoute/PrivateRoute.jsx'
 import ErrorPage from './pages/Error/ErrorPage.jsx'
 import Users from './pages/Users/Users.jsx'
+import Unauthorized from './pages/Unauthorized/Unauthorized.jsx'
 
 
 createRoot(document.getElementById('root')).render(
@@ -34,6 +35,7 @@ createRoot(document.getElementById('root')).render(
           <Route path='update/:id' element={<EditProduct />} />
           <Route path='users' element={<Users />} />
         </Route>
+      
         <Route path='*' element={<ErrorPage />} />
       </Routes>
     </AuthProvider>

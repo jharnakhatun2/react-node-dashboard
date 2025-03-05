@@ -1,11 +1,12 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router";
+import { Navigate, useNavigate } from "react-router";
 import { useAuth } from "../../components/Context/AuthProvider";
 import Loader from "../../util/Loader/Loader";
 
 const PrivateRoute = ({ children }) => {
   const navigate = useNavigate();
-  const { user, loading } = useAuth();
+  const {user, loading } = useAuth();
+
 
   // Redirect if user is not authenticated
   useEffect(() => {
