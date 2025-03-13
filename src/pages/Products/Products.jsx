@@ -25,7 +25,7 @@ const Products = () => {
 
   //Get product
   useEffect(() => {
-    fetch('http://localhost:5000/product')
+    fetch('https://react-node-server-487w.onrender.com/product')
       .then(res => res.json())
       .then(data => {
         console.log(data)
@@ -47,7 +47,7 @@ const Products = () => {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/product/${id}`, { method: 'DELETE' })
+        fetch(`https://react-node-server-487w.onrender.com/product/${id}`, { method: 'DELETE' })
       .then(res => res.json())
       .then(data => {
         console.log(data);
@@ -64,12 +64,8 @@ const Products = () => {
         }
       })
       }
-    });
-
-
-    
+    }); 
   }
-  
 
   // Filter products based on search query
   const filteredProducts = productsData.filter((product) =>

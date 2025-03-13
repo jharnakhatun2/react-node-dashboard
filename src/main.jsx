@@ -24,8 +24,8 @@ createRoot(document.getElementById('root')).render(
       <Routes>
         <Route path="/" element={<AuthLayout />} >
           <Route index element={<Admin />} />
-          <Route path='register' element={<Register />} />
-          <Route path='login' element={<Login />} />
+          {/* <Route path='register' element={<Register />} />
+          <Route path='login' element={<Login />} /> */}
         </Route>
 
         <Route path="/dashboard" element={<PrivateRoute><Layout /></PrivateRoute>} >

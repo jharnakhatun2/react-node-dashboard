@@ -28,7 +28,7 @@ const Register = () => {
                 const usersInfo = { name, email, creationTime }
 
                 //Save user data in mongodb database
-                fetch('http://localhost:5000/users', {
+                fetch('https://react-node-server-487w.onrender.com/users', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

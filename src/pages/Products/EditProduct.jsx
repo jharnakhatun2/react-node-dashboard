@@ -14,7 +14,7 @@ const EditProduct = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/product/${id}`);
+        const response = await fetch(`https://react-node-server-487w.onrender.com/product/${id}`);
         const data = await response.json();
         setSingleData(data);
       } catch (error) {
@@ -34,7 +34,7 @@ const EditProduct = () => {
     const price = form.price.value;
     const description = form.description.value;
     const products = { image, title, price, description };
-    fetch(`http://localhost:5000/product/${singleData._id}`, {
+    fetch(`https://react-node-server-487w.onrender.com/product/${singleData._id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

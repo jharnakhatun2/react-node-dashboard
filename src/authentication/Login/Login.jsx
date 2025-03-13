@@ -20,7 +20,7 @@ const Login = () => {
                 console.log(result.user);
                 const lastSignInTime = result.user?.metadata?.lastSignInTime;
                 const usersInfo = { email, lastSignInTime }
-                fetch('http://localhost:5000/users/', {
+                fetch('https://react-node-server-487w.onrender.com/users/', {
                     method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json',

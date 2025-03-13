@@ -12,7 +12,7 @@ const UserTable = () => {
   useEffect(() => {
     const fetchFunction = async () => {
       try {
-        const response = await fetch('http://localhost:5000/users')
+        const response = await fetch('https://react-node-server-487w.onrender.com/users')
         const data = await response.json();
         console.log(data)
         setUsers(data);
@@ -36,7 +36,7 @@ const UserTable = () => {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/users/${id}`, { method: 'DELETE' })
+        fetch(`https://react-node-server-487w.onrender.com/users/${id}`, { method: 'DELETE' })
           .then(res => res.json())
           .then(data => {
             console.log(data);
@@ -63,21 +63,21 @@ const UserTable = () => {
     <>
       <h1>Total Users : <span className="font-bold">{allUsers.length}</span></h1>
       <Table aria-label="Example static collection table">
-        <TableHeader>
-          <TableColumn>NAME</TableColumn>
-          <TableColumn>EMAIL</TableColumn>
-          <TableColumn>CREATION TIME</TableColumn>
-          <TableColumn>LAST SIGNIN TIME</TableColumn>
-          <TableColumn className="flex justify-center">ACTION</TableColumn>
+        <TableHeader >
+          <TableColumn className="text-sm">NAME</TableColumn>
+          <TableColumn className="text-sm">EMAIL</TableColumn>
+          <TableColumn className="hidden md:table-cell text-sm">CREATION TIME</TableColumn>
+          <TableColumn className="hidden lg:table-cell text-sm">LAST SIGNIN TIME</TableColumn>
+          <TableColumn className="flex justify-center text-sm">ACTION</TableColumn>
         </TableHeader>
         <TableBody>
           {
             allUsers?.map((user) => (
-              <TableRow key={user._id} className="text-gray-600 text-md">
+              <TableRow key={user._id} className="text-gray-600 text-sm md:text-md">
                 <TableCell>{user.name}</TableCell>
                 <TableCell>{user.email}</TableCell>
-                <TableCell>{user.creationTime}</TableCell>
-                <TableCell>{user.lastSignInTime}</TableCell>
+                <TableCell className="hidden md:table-cell">{user.creationTime}</TableCell>
+                <TableCell className="hidden lg:table-cell">{user.lastSignInTime}</TableCell>
                 <TableCell onClick={() => handleDelete(user._id)} className="flex justify-center text-xl text-red-600 cursor-pointer hover:text-red-400"><MdOutlineDeleteForever /></TableCell>
               </TableRow>
             ))

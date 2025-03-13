@@ -13,7 +13,7 @@ const handleSubmit = (e) =>{
   const description = form.description.value ;
   const products = {image, title, price, description};
   console.log(products)
-  fetch('http://localhost:5000/product',{
+  fetch('https://react-node-server-487w.onrender.com/product',{
     method : 'POST',
     headers : {
       'Content-Type' : 'application/json',
