@@ -48,23 +48,23 @@ const Products = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(`https://react-node-server-487w.onrender.com/product/${id}`, { method: 'DELETE' })
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-        if (data.deletedCount > 0) {
-          swal({
-            title: "Deleted!",
-            text: "Product Deleted Successfully",
-            icon: "success",
-            dangerMode: false,
-          });
-          const allData = productsData.filter((product) => product._id !== id);
-          console.log(allData)
-          setProductsData(allData);
-        }
-      })
+          .then(res => res.json())
+          .then(data => {
+            console.log(data);
+            if (data.deletedCount > 0) {
+              swal({
+                title: "Deleted!",
+                text: "Product Deleted Successfully",
+                icon: "success",
+                dangerMode: false,
+              });
+              const allData = productsData.filter((product) => product._id !== id);
+              console.log(allData)
+              setProductsData(allData);
+            }
+          })
       }
-    }); 
+    });
   }
 
   // Filter products based on search query
@@ -111,7 +111,7 @@ const Products = () => {
         {currentProducts?.map((product) => (
           /* eslint-disable no-console */
           <div key={product._id} className="flex items-center gap-3">
-            <div className="w-64">
+            <div className="w-full sm:w-64">
               <Image
                 alt={product.title}
                 className="w-full object-cover h-[200px] rounded"
