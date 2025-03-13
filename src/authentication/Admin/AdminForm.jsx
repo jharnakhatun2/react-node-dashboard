@@ -58,7 +58,7 @@ const AdminForm = () => {
           })}
           type="email"
           placeholder="Email"
-          className="input-style bg-[#f3e5d3] border-[#faeedc]"
+          className="input-style bg-[#f3dcc0] border-[#faeedc] shadow"
         />
         {errors.email && <small className="text-red-500" role="alert">Email is required</small>}
       </div>
@@ -70,7 +70,7 @@ const AdminForm = () => {
           })}
           type="password"
           placeholder="Password"
-          className="input-style bg-[#f3e5d3] border-[#faeedc]"
+          className="input-style bg-[#f3dcc0] border-[#faeedc] shadow"
         />
         {errors.password && <small className="text-red-500" role="alert">Password is required</small>}
       </div>
@@ -79,8 +79,8 @@ const AdminForm = () => {
       <div>
         <input
           type="submit"
-          value="Log In"
-          className="bg-green-200 text-gray-700 font-medium md:max-w-full uppercase input-style cursor-pointer"
+          value="LogIn"
+          className="bg-green-300 text-gray-700 font-bold md:max-w-full uppercase input-style cursor-pointer"
         />
       </div>
     </form>
