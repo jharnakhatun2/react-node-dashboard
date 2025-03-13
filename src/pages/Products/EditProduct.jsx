@@ -70,7 +70,7 @@ const EditProduct = () => {
           <p className="text-gray-700">Update</p>
         </div>
         <div className="border-b border-gray-300 pb-3">
-          <h1 className="text-2xl text-marcellus font-medium">Update Product</h1>
+          <h1 className="text-lg uppercase text-marcellus font-medium">Update Product</h1>
           <p className="text-gray-500">To update your product from the dashboard and navigate to the "Products" section. </p>
         </div>
         <form className="space-y-5 mt-5" onSubmit={handleUpdate}>
