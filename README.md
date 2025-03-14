@@ -27,8 +27,8 @@ Live Site (Frontend): https://react-node-dashboard-gold.vercel.app/
 - CORS (for handling cross-origin requests)
 - Dotenv (for environment variables)
 
-### Project Structure
-## Frontend (Client)
+# Project Structure
+### Frontend (Client)
 - Built with React and Vite for a modern and fast development experience.
 - Uses TailwindCSS for utility-first styling.
 - Firebase handles user authentication.
@@ -37,7 +37,7 @@ Live Site (Frontend): https://react-node-dashboard-gold.vercel.app/
 - React Router manages navigation between pages.
 - SweetAlert2 provides beautiful and customizable alerts.
 
-## Backend (Server)
+### Backend (Server)
 - Built with Node.js and Express.js for handling API requests.
 - MongoDB is used as the database to store and manage data.
 - CORS is enabled to allow cross-origin requests from the frontend.
