@@ -14,10 +14,8 @@ const Login = () => {
     //handle form submit
     const onSubmit = (data) => {
         const { email, password } = data;
-        console.log(`Email : ${email}, Password : ${password}`)
         login(email, password)
             .then(result => {
-                console.log(result.user);
                 const lastSignInTime = result.user?.metadata?.lastSignInTime;
                 const usersInfo = { email, lastSignInTime }
                 fetch('https://react-node-server-487w.onrender.com/users/', {
@@ -29,7 +27,6 @@ const Login = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        console.log(data);
                         swal({
                             title: "Login successful!",
                             text: "You're logged in!",
@@ -54,7 +51,7 @@ const Login = () => {
     //Handle Google signin
     const handleGoogleSingIn = () => {
         signInWithPopup(auth, provider)
-            .then((result) => console.log(result.user))
+            .then((result) => result.user)
             .catch((error) => console.error(error));
     }
 

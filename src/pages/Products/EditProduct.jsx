@@ -43,7 +43,6 @@ const EditProduct = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         if (data.modifiedCount > 0) {
           swal({
             title: "Update Successful!",

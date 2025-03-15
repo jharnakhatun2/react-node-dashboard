@@ -28,7 +28,6 @@ const Products = () => {
     fetch('https://react-node-server-487w.onrender.com/product')
       .then(res => res.json())
       .then(data => {
-        console.log(data)
         setProductsData(data);
         setLoading(false)
       })
@@ -50,7 +49,6 @@ const Products = () => {
         fetch(`https://react-node-server-487w.onrender.com/product/${id}`, { method: 'DELETE' })
           .then(res => res.json())
           .then(data => {
-            console.log(data);
             if (data.deletedCount > 0) {
               swal({
                 title: "Deleted!",
@@ -59,7 +57,6 @@ const Products = () => {
                 dangerMode: false,
               });
               const allData = productsData.filter((product) => product._id !== id);
-              console.log(allData)
               setProductsData(allData);
             }
           })

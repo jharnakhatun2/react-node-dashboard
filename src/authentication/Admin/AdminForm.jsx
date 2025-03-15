@@ -13,10 +13,8 @@ const AdminForm = () => {
   //handle form submit
   const onSubmit = async (data) => {
     const { email, password } = data;
-    console.log(`Email : ${email}, Password : ${password}`)
     try {
       const res = await login(email, password)
-      console.log(res.user);
       swal({
         title: "Login successful!",
         text: "You're logged in! Redirecting to your dashboard...",

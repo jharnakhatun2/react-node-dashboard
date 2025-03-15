@@ -16,10 +16,9 @@ const Register = () => {
     //Handle form submit
     const onSubmit = (data) => {
         const { name, email, password } = data;
-        console.log(`Name: ${name} Email : ${email}, Password : ${password}`)
+        
         createUser(email, password)
             .then(result => {
-                console.log(result.user);
                 //update user profile name
                 updateProfile(auth.currentUser, {
                     displayName: name,
@@ -68,7 +67,7 @@ const Register = () => {
     //Handle Google signin
     const handleGoogleSingIn = () => {
         signInWithPopup(auth, provider)
-            .then((result) => console.log(result.user))
+            .then((result) => result.user)
             .catch((error) => console.error(error));
     }
 

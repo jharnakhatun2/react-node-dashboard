@@ -12,7 +12,6 @@ const handleSubmit = (e) =>{
   const price = form.price.value ;
   const description = form.description.value ;
   const products = {image, title, price, description};
-  console.log(products)
   fetch('https://react-node-server-487w.onrender.com/product',{
     method : 'POST',
     headers : {
@@ -22,7 +21,6 @@ const handleSubmit = (e) =>{
   })
   .then(res => res.json())
   .then(data => {
-    console.log(data)
     if(data.insertedId){
       swal({
         title: "Done!",

@@ -14,7 +14,6 @@ const UserTable = () => {
       try {
         const response = await fetch('https://react-node-server-487w.onrender.com/users')
         const data = await response.json();
-        console.log(data)
         setUsers(data);
       } catch (error) {
         console.error(error)
@@ -39,7 +38,6 @@ const UserTable = () => {
         fetch(`https://react-node-server-487w.onrender.com/users/${id}`, { method: 'DELETE' })
           .then(res => res.json())
           .then(data => {
-            console.log(data);
             if (data.deletedCount > 0) {
               swal({
                 title: "Deleted!",
@@ -48,7 +46,6 @@ const UserTable = () => {
                 dangerMode: false,
               });
               const users = allUsers.filter((user) => user._id !== id);
-              console.log(users)
               setUsers(users);
             }
           })
