@@ -1,4 +1,4 @@
-# Bambo Brush Dashboard
+# Bamboo Brush Dashboard
 Welcome to the Bambo Brush Dashboard project! This is a full-stack web application built with React for the frontend and Node.js for the backend. The project includes a dashboard interface with various features, powered by Firebase for authentication and MongoDB for data storage.
 
 ## 🔗Live Links
