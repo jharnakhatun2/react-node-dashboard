@@ -7,16 +7,19 @@ import Swal from "sweetalert2";
 
 const UserTable = () => {
   const [allUsers, setUsers] = useState([]);
-  const { loading } = useAuth();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     const fetchFunction = async () => {
       try {
         const response = await fetch('https://react-node-server-487w.onrender.com/users')
         const data = await response.json();
         setUsers(data);
+        setLoading(false);
       } catch (error) {
-        console.error(error)
+        console.error(error);
+        setLoading(false);
       }
     }
     fetchFunction();

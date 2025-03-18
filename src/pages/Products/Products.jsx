@@ -26,16 +26,16 @@ const Products = () => {
 
   //Get product
   useEffect(() => {
-     setLoading(true); // Ensure loading starts
+     setLoading(true);
     fetch("https://react-node-server-487w.onrender.com/product")
       .then((res) => res.json())
       .then((data) => {
         setProductsData(data);
-        setLoading(false); // Set loading to false after fetching
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching products:", error);
-        setLoading(false);// Ensure loading is stopped even if there's an error
+        setLoading(false);
       });
   }, []);
 
