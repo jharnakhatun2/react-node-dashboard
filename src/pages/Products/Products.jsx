@@ -14,23 +14,29 @@ import Swal from "sweetalert2";
 
 
 const Products = () => {
-  const { searchQuery, loading, setLoading } = useAuth();
+  const { searchQuery } = useAuth();
   const [productsData, setProductsData] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
   const productsPerPage = 6;
 
 
 
   //Get product
   useEffect(() => {
-    fetch('https://react-node-server-487w.onrender.com/product')
-      .then(res => res.json())
-      .then(data => {
+     setLoading(true); // Ensure loading starts
+    fetch("https://react-node-server-487w.onrender.com/product")
+      .then((res) => res.json())
+      .then((data) => {
         setProductsData(data);
-        setLoading(false)
+        setLoading(false); // Set loading to false after fetching
       })
+      .catch((error) => {
+        console.error("Error fetching products:", error);
+        setLoading(false);// Ensure loading is stopped even if there's an error
+      });
   }, []);
 
   //Delete product
